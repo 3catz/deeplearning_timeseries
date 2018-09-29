@@ -10,7 +10,9 @@ I did this way because I didn't want to assume that you could always do EEMD and
 
 There's not a lot of literature out there covering the hybrid approach of using EEMD and convolutional neural networks--there are papers using EMD + other machine learning methods, like SVM, and there are papers about fully convolutional networks using ablation, else known as dilated kernels, but not many trying to combine the two. I wanted to see what could be done when we bring some of the best techniques from time series analysis in applied mathematics, natural science and engineering and combined with the latest techniques in deep learning. There were times when it worked fairly well, and beat out a XGBoost Regression model that I ran using AutoML, and other times when they seemed to be neck and neck. 
 
+The Chen, Rabinovich Fabrikant and Faes are synthetic time series, of varying degrees of nonlinearity, nonstationarity and chaos. The other time series are drawn from space physics (solar wind, magnetic fields), as well as finance (IRX is a treasury stock or ETF) and meteorology (air pressure) and biology (zooplankton time series). In each case, the architecture had to be tuned--from 2 to sometimes 4-5 convolutional layers, from filter sizes of 1 to 3. In most cases, I concatenated the feature maps produced by these layers with the original time series, rather than add or multiply as you often see in deep learning literature. I did this so that, if necessary, it could more or less learn the identity function and just use the time series itself as features, if indeed that was the more fruitful and accurate way to go. 
 
+I really could not have done any of this without comp-engine.org, which is a veritable gold mine of time series data, and allows us to find a great variety of time series with which to test these ideas, and to see what a general approach to time series forecasting might look like. 
 
 
 
